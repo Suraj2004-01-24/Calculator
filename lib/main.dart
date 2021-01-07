@@ -28,6 +28,7 @@ class SimpCalculatorState extends State<SimpleCalculator> {
   String expression = "0";
   double equationFontSize = 38.0;
   double resultFontSize = 48.0;
+  String Ans = "0";
 
   buttonPressed(buttonText) {
     setState(() {
@@ -57,10 +58,17 @@ class SimpCalculatorState extends State<SimpleCalculator> {
         } catch (e) {
           result = "Error";
         } finally {
+          if(result != "Error"){
+            Ans = result;
+          }else{
+            Ans="0";
+          }
           equation = "0";
           expression = "0";
         }
-      } else {
+      }else if(buttonText=="Ans"){
+        equation=equation+Ans;
+      }else {
         equationFontSize = 38.0;
         resultFontSize = 48.0;
         if (equation == "0") {
@@ -137,7 +145,7 @@ class SimpCalculatorState extends State<SimpleCalculator> {
                     buildButton("C", 1, Colors.redAccent),
                     buildButton("del", 1, Colors.blue),
                     buildButton("÷", 1, Colors.blue),
-                    buildButton("ans", 1, Colors.blue),
+                    buildButton("Ans", 1, Colors.blue),
                   ],
                 ),
                 Row(
